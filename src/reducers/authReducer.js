@@ -4,14 +4,16 @@
 import {
     LOGIN_USER,
     LOGOUT_USER,
-    GET_AUTH_ACCOUNT
+    GET_AUTH_ACCOUNT,
+    REGISTER
 } from '../constant';
 
 /**
  * initial auth user
  */
 const INIT_STATE = {
-    user: {}
+    user: {},
+    
 
 };
 
@@ -19,12 +21,20 @@ export default (state = INIT_STATE, action) => {
     switch (action.type) {
 
         case LOGIN_USER:
-            return { ...state};
+            return { ...state, user: action.payload};
+
         case LOGOUT_USER: 
-            return {user: null}
+            return {...state , user: null}
 
         case GET_AUTH_ACCOUNT: {
             return {
+                ...state,
+                user: action.payload
+            }
+        }
+        case REGISTER: {
+            return {
+                ...state,
                 user: action.payload
             }
         }

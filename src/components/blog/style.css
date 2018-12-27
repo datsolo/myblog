@@ -1,0 +1,24 @@
+.a-blog{
+    border-bottom: 0.3px solid rgba(0,0,0,0.7);
+    padding: 10px;
+}
+
+.avatar{
+    width: 55px;
+    border-radius: 100%;
+}
+
+.user-name{
+    font-size: 1.35em;
+    font-weight: bold;
+    color: #070a9a;
+}
+
+.content-short-cut-blog{
+    margin-top: 8px;
+    color: rgba(0,0,0,0.6);
+}
+
+.writer{
+    font-size: 0.8em;
+}

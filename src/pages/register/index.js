@@ -60,10 +60,10 @@ class RegisterPage extends Component {
                                 <div className="page-links">
                                     <Link to={"/login"}>Login</Link><Link to={"/register"} className="active">Register</Link>
                                 </div>
-                                <form>
-                                    <input className="form-control" type="text" name="name" placeholder="Full Name" required />
-                                    <input className="form-control" type="email" name="email" placeholder="E-mail Address" required />
-                                    <input className="form-control" type="password" name="password" placeholder="Password" required />
+                                <form onSubmit={(event) => this.onSubmit(event)}>
+                                    <input className="form-control" type="username" name="username" placeholder="User name" required onChange={(event) => this.onChange(event)} />
+                                    <input className="form-control" type="password" name="password" placeholder="Password" required onChange={(event) => this.onChange(event)} />
+                                    <input className="form-control" type="number" name="phone" placeholder="Phone number" required onChange={(event) => this.onChange(event)} />
                                     <div className="form-button">
                                         <button id="submit" type="submit" className="ibtn">Register</button>
                                     </div>
@@ -77,11 +77,6 @@ class RegisterPage extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        redirectToReferrer: state.auth.redirectToReferrer,
-    }
-}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -89,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(null, mapDispatchToProps)(RegisterPage);

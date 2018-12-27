@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
 import routes from './routes';
 import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,16 +11,16 @@ import { getCookie } from './helper';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    getCookie("session_id")
+    getCookie("session_id"))
       ? <Component {...props} />
       : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-  )} ></Route>
+  } ></Route>
 )
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.getAuthAccount();
-  // }
+  componentDidMount() {
+    this.props.getCurrentAccount();
+  }
 
   render() {
     return (

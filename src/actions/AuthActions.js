@@ -11,9 +11,10 @@ import {
 
 export const loginAccount = (username, password) => (dispatch) => {
     return new Promise((resolve, reject) => {
-        dispatch({ type: LOGIN_USER });
+       
         return api.post('/login', { username: username, password: password })
             .then((response) => {
+                dispatch({ type: LOGIN_USER, payload: response.data.account });
                 setCookie('session_id', response.data.sessionid, 10);
                 resolve(response.data.account);
             })
@@ -38,7 +39,7 @@ export const getAuthAccount = () => dispatch => {
 
 export const registerAccount = (newUser) => (dispatch) => {
     return new Promise((resolve, reject) => {
-        return api.post('/register', newUser)
+        return api.post('/account', newUser)
         .then(res => {
             var data = res.data;
             setCookie('token', data.token, 1);
@@ -47,7 +48,8 @@ export const registerAccount = (newUser) => (dispatch) => {
             resolve(data.account);
         })
         .catch(err => {
-            console.log(err);
+            console.log(err.response.data.message);
+            alert(err.response.data.message);
             reject(err);
         });
     });

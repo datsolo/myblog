@@ -33,8 +33,7 @@ class LoginPage extends Component {
 
     login = (e) => {
         e.preventDefault();
-        let login = this.state.loginData;
-        this.props.userLogin(login).then((data) => {
+        this.props.userLogin(this.state.loginData.username, this.state.loginData.password ).then((data) => {
             this.setState({ redirectToReferrer: true });
         });
 
@@ -46,48 +45,54 @@ class LoginPage extends Component {
         }
 
         return (
-            <div className="form-body">
-                <div className="row">
-                    <div className="img-holder">
-                        <div className="bg" />
-                        <div className="info-holder">
-                            <img src={Graphic3} alt="" />
+            <React.Fragment>
+                <div>
+                    {/* <Header></Header> */}
+                </div>
+                <div className="form-body">
+                    <div className="row">
+                        <div className="img-holder">
+                            <div className="bg" />
+                            <div className="info-holder">
+                                <img src={Graphic3} alt="" />
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-holder">
-                        <div className="form-content">
-                            <div className="form-items">
-                                <h3>Get more things done with Loggin platform.</h3>
-                                <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                                <div className="page-links">
-                                <Link to={"/login"} className="active">Login</Link><Link to={"/register"} >Register</Link>
-                                </div>
-                                <form>
-                                    <input className="form-control" type="text" name="username" placeholder="E-mail Address" required />
-                                    <input className="form-control" type="password" name="password" placeholder="Password" required />
-                                    <div className="form-button">
-                                        <button id="submit" type="submit" className="ibtn">Login</button> <a href="forget7.html">Forget password?</a>
+                        <div className="form-holder">
+                            <div className="form-content">
+                                <div className="form-items">
+                                    <h3>Get more things done with Loggin platform.</h3>
+                                    <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                                    <div className="page-links">
+                                        <Link to={"/login"} className="active">Login</Link><Link to={"/register"} >Register</Link>
                                     </div>
-                                </form>
+                                    <form onSubmit={(event) => this.login(event)}>
+                                        <input className="form-control" type="text" name="username" placeholder="User name" required onChange={(event) => this.onChange(event)}/>
+                                        <input className="form-control" type="password" name="password" placeholder="Password" required  onChange={(event) => this.onChange(event)}/>
+                                        <div className="form-button">
+                                            <button id="submit" type="submit" className="ibtn">Login</button> <a href="forget7.html">Forget password?</a>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                
+            </React.Fragment>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        redirectToReferrer: state.auth.redirectToReferrer,
-    }
-}
+// function mapStateToProps(state) {
+//     return {
+//         redirectToReferrer: state.auth.redirectToReferrer,
+//     }
+// }
 
 function mapDispatchToProps(dispatch) {
     return {
-        userLogin: (login) => dispatch(loginAccount(login))
+        userLogin: (username, password) => dispatch(loginAccount(username, password))
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage));
+export default withRouter(connect(null, mapDispatchToProps)(LoginPage));
