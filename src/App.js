@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-
-
 import routes from './routes';
 import { Switch, Redirect, Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAuthAccount } from './actions/AuthActions';
 import { getCookie } from './helper';
+import {getHastag} from './actions/HastagAction';
+
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -19,7 +20,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 class App extends Component {
   componentDidMount() {
-    this.props.getCurrentAccount();
+    if(getCookie('session_id')) this.props.getCurrentAccount();
+    this.props.getHastag();
   }
 
   render() {
@@ -62,7 +64,8 @@ class App extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCurrentAccount: () => dispatch(getAuthAccount())
+    getCurrentAccount: () => dispatch(getAuthAccount()),
+    getHastag: () => dispatch(getHastag())
   }
 }
 

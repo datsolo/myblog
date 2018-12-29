@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { loginAccount } from '../../actions/AuthActions';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { getCookie } from '../../helper';
 import Graphic3 from '../../images/graphic3.svg';
 
 
@@ -21,6 +20,12 @@ class LoginPage extends Component {
             }
         };
     }
+
+    // componentDidMount(){
+    //     if(getCookie('session_id')) {
+    //         removeCookie('session_id');
+    //     }
+    // }
 
     onChange = (e) => {
         this.setState({
@@ -46,9 +51,6 @@ class LoginPage extends Component {
 
         return (
             <React.Fragment>
-                <div>
-                    {/* <Header></Header> */}
-                </div>
                 <div className="form-body">
                     <div className="row">
                         <div className="img-holder">
@@ -82,12 +84,6 @@ class LoginPage extends Component {
         );
     }
 }
-
-// function mapStateToProps(state) {
-//     return {
-//         redirectToReferrer: state.auth.redirectToReferrer,
-//     }
-// }
 
 function mapDispatchToProps(dispatch) {
     return {

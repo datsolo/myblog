@@ -5,7 +5,8 @@ import {
     LOGIN_USER,
     LOGOUT_USER,
     GET_AUTH_ACCOUNT,
-    REGISTER
+    REGISTER,
+    GET_AUTH_ACCOUNT_FAIL
 } from '../constant';
 
 /**
@@ -32,6 +33,11 @@ export default (state = INIT_STATE, action) => {
                 user: action.payload
             }
         }
+        
+        case GET_AUTH_ACCOUNT_FAIL: {
+            return {user: {}}
+        }
+
         case REGISTER: {
             return {
                 ...state,

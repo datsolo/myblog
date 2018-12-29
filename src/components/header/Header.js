@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
 import './style.css';
+import Avatar from "../../images/team-mann.jpg";
+import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
+import { getHastag } from '../../actions/HastagAction';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 class Header extends Component {
 
+    
+
+    showHastag(hastags) {
+        if(hastags.length > 0) {
+          return  hastags.map((hastag) => {
+              return <a className="dropdown-item" href="#" key={hastag._id}>#{hastag.content}</a>
+          })
+        }
+        else return null;
+        
+    }
+
     render() {
+
+        const user = this.props.user;
+        const hastags = this.props.hastags;
+        
+
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
@@ -14,23 +36,39 @@ class Header extends Component {
                     <div className="collapse navbar-collapse" id="navbarsExample07">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item ">
-                                <a className="nav-link" href="#">Home</a>
+                                <a className="nav-link" href="#"><i className="zmdi zmdi-home"></i> Home</a>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                                <a className="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="zmdi zmdi-menu"></i> Menu</a>
                                 <div className="dropdown-menu" aria-labelledby="dropdown07">
-                                    <a className="dropdown-item" href="#">Action</a>
+                                    {/* <a className="dropdown-item" href="#">Action</a>
                                     <a className="dropdown-item" href="#">Another action</a>
-                                    <a className="dropdown-item" href="#">Something else here</a>
+                                    <a className="dropdown-item" href="#">Something else here</a> */}
+                                    {this.showHastag(hastags)}
                                 </div>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link " href="#">Viết bài</a>
+                                <a className="nav-link " href="#"><i className="zmdi zmdi-border-color"></i> Viết bài</a>
                             </li>
                         </ul>
                         <form className="form-inline my-2 my-md-0">
-                            <input className="form-control" type="text" placeholder="Search" aria-label="Search" />
+                            <input className="form-control" type="text" placeholder="nhập và enter để tìm "  />
                         </form>
+                        <ul className="navbar-nav ml-auto">
+                            
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img className='avatar-header mr-2' src={Avatar} alt="avatar"></img> 
+                                {user.username}
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="dropdown07">
+                                    <a className="dropdown-item" href="#"><i class="zmdi zmdi-account-circle"></i> Trang cá nhân</a>
+                                    <a className="dropdown-item" href="#"><i class="zmdi zmdi-settings"></i> Cài đặt</a>
+                                    <a className="dropdown-item" href="#"><i class="zmdi zmdi-power"></i> Đăng xuất</a>
+                                </div>
+                            </li>
+                           
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -38,4 +76,16 @@ class Header extends Component {
     }
 }
 
-export default Header;
+function mapStateToProps(state) {
+    return {
+        user: state.auth.user,
+        hastags: state.hastag.allHastag
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

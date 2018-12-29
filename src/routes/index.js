@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import Blog from '../components/blog';
+import HomePage from '../pages/home';
 
 const routes = [
     {
@@ -19,7 +20,7 @@ const routes = [
     {
         path: '/',
         exact: true,
-        main: () => <Header></Header>
+        main: () => <HomePage></HomePage>
     },
     {
         path: '/test',

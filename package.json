@@ -5,11 +5,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "boostrap": "^2.0.0",
+    "moment": "^2.23.0",
     "react": "^16.7.0",
+    "react-bootstrap-sweetalert": "^4.4.1",
     "react-dom": "^16.7.0",
+    "react-notifications": "^1.4.3",
+    "react-paginate": "^6.0.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2",
+    "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
