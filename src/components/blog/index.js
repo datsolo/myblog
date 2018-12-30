@@ -30,7 +30,7 @@ class Blog extends Component {
                         <img src={Avatar} alt="avt-blog" className="avatar-blog"></img>
                     </div>
                     <div className="col-9">
-                        <a href="#" className="user-name">{blog.title}</a><br/>
+                        <Link to={`/blog/${blog._id}`} className="user-name">{blog.title}</Link><br/>
                         {this.showHastag(blog.hastag)}
                     </div>
                     <div className="col-2">

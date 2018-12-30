@@ -25,7 +25,7 @@ class Footer extends Component {
                         </li>
                         <li className="list-inline-item">
                             <a className="btn-floating btn-dribbble mx-1"  href="https://www.instagram.com/dat.nv2210/" target='blank' >
-                                <i class="fab fa-instagram"></i>">
+                                <i className="fab fa-instagram"></i>">
                             </a>
                         </li>
                     </ul>

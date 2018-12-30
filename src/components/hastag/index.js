@@ -9,7 +9,7 @@ class Hastag extends Component {
     render() {
         return (
             <Link to={"/blog"}>
-                <span class="badge badge-info hastag">{this.props.children}</span>
+                <span className="badge badge-info hastag">{this.props.children}</span>
             </Link>
         )
     }

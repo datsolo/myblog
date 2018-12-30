@@ -5,6 +5,7 @@ import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import Blog from '../components/blog';
 import HomePage from '../pages/home';
+import Blogdetail from '../pages/blogdetail';
 
 const routes = [
     {
@@ -23,14 +24,14 @@ const routes = [
         main: () => <HomePage></HomePage>
     },
     {
-        path: '/test',
+        path: '/home',
         exact: false,
-        main: () => <Footer></Footer>
+        main: () => <HomePage></HomePage>
     },
     {
-        path: "/blog",
+        path: "/blog/:id",
         exact: false,
-        main: () => <Blog></Blog>
+        main: () => <Blogdetail></Blogdetail>
     }
 ];
 

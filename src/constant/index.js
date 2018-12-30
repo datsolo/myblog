@@ -21,3 +21,6 @@ export const GET_ALL_BLOG_USER = 'GET_ALL_BLOG_USER';
 //comment
 export const GET_ALL_COMMENT = 'GET_ALL_COMMENT';
 export const WRITE_COMMENT = 'WRITE_COMMENT';
+
+//account
+export const GET_ACCOUNT_DETAIL = 'GET_ACCOUNT_DETAIL';
