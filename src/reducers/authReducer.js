@@ -13,7 +13,9 @@ import {
  * initial auth user
  */
 const INIT_STATE = {
-    user: {},
+    user: {
+        _id:""
+    },
     
 
 };

@@ -15,7 +15,7 @@ class Blog extends Component {
             return null;
         }
         else return hastag.map((tag) => {
-            return <Hastag key={tag._id}>#{tag.content}</Hastag>
+            return <Hastag key={tag._id} id={tag._id}>#{tag.content}</Hastag>
         })
     }
 
@@ -48,7 +48,7 @@ class Blog extends Component {
                     <div className="col-10">
                         <p className="content-short-cut-blog" >{(blog.content.length > 200) ? blog.content.substr(0,199) : blog.content}...</p>
                         <p className="writer">
-                            <Link to="/blog"><span>{blog.user_id.username}</span></Link> <span> viết {moment(new Date(blog.created)).fromNow()}.</span>
+                            <Link to={`/user/${blog.user_id._id}`}><span>{blog.user_id.username}</span></Link> <span> viết {moment(new Date(blog.created)).fromNow()}.</span>
                         </p>
                     </div>
                     <div className="col-3"></div>

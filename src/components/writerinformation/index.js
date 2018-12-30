@@ -10,17 +10,15 @@ class WriterInformation extends Component {
 
         return (
             <div className='row writer-infor'>
-            <div className='col-2'></div>
+                <div className='col-2'></div>
                 <div className='col-4'>
-                    
-                        <img className='avatar' src={Avatar} alt="avatar"></img>
-                    
+
+                    <img className='avatar' src={Avatar} alt="avatar"></img>
+
                 </div>
                 <div className='col-5'>
-                    
-                        <span className='user-name'><Link to='/'>{this.props.user.username}</Link></span><br/>
-                        <span>0 bai viet</span><br/>
-                    
+                    <span className='user-name'><Link to={`/user/${this.props.user._id}`}>{this.props.user.username}</Link></span><br />
+                    {(this.props.countBlog) ? <span>{this.props.countBlog} bai viet</span> : null} <br />
                 </div>
             </div>
 

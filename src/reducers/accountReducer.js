@@ -4,7 +4,8 @@ import {
 
 const INIT_STATE = {
     account: {
-        username: ""
+        username: "",
+        _id:""
     }
 
 }

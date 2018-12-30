@@ -1,0 +1,18 @@
+.content{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.list-tag{
+    padding-top: 30px;
+    font-size: 1.5em;
+    font-family: -webkit-pictograph;
+    color: #33b5e5;
+}
+
+.chude{
+    padding-top: 30px;
+    border-top: 0.3px solid rgba(0,0,0,0.7);
+}

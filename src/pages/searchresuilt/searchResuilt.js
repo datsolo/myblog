@@ -6,18 +6,19 @@ import Blog from '../../components/blog';
 import WriterInformation from '../../components/writerinformation';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getAllBlog, getAllUserBlog } from '../../actions/BlogAction';
+import {  searchBlog } from '../../actions/BlogAction';
 import Hastag from '../../components/hastag';
 
-class HomePage extends Component {
+class SearchResuilt extends Component {
 
     componentDidMount() {
-        this.props.getAllBlog();
+        this.props.getAllBlog(this.props.match.params.keyword);
+        console.log(this.props.match)
     }
 
     showBlogs(blogs) {
         if (blogs.length < 0) {
-            return null;
+            return <p style={{fontSize: '1.4em'}}>Không có bài viết</p>;
         }
         else return blogs.map((blog) => {
             return <Blog key={blog._id} blog={blog}></Blog>
@@ -43,7 +44,7 @@ class HomePage extends Component {
                     <div className='row'>
                         <div className='col-1'></div>
                         <div className='col-7'>
-                            <p style={{fontSize: '1.4em'}}>Bạn sẽ nhìn thấy những bài viết mới trước</p>
+                            <p style={{fontSize: '1.4em'}}>Tìm kiếm kết quả cho <i>{this.props.match.params.keyword}</i> </p>
                         </div>
                     </div>
 
@@ -80,16 +81,16 @@ class HomePage extends Component {
 
 function mapStateToProps(state) {
     return {
-        listBlogs: state.blog.blogs,
+        listBlogs: state.blog.blogSearch,
         user: state.auth.user,
-        hastag: state.hastag.allHastag
+        hastag: state.hastag.allHastag,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getAllBlog: () => dispatch(getAllBlog()),
+        getAllBlog: (keyword) => dispatch(searchBlog(keyword)),
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchResuilt));

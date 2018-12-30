@@ -15,7 +15,7 @@ class ContentBlogDetail extends Component {
             return null;
         }
         else return hastag.map((tag) => {
-            return <Hastag key={tag._id}>#{tag.content}</Hastag>
+            return <Hastag key={tag._id} id={tag._id}>#{tag.content}</Hastag>
         })
     }
 
@@ -29,8 +29,8 @@ class ContentBlogDetail extends Component {
                     
                     <div className="col-12">
                         <Link to={`/blog/${blog._id}`} ><span className="title-blog-detail">{blog.title}</span></Link><br/>
-                        {this.showHastag(blog.hastag)}<br/>
-                        <img src={Avatar} alt="avt-blog-detail" className="avatar-blog-detail"></img><Link to="/blog"><span>{blog.user_id.username}</span></Link> <span> viết ngày {(new Date(blog.created)).toLocaleDateString()}.</span>
+                        {this.showHastag(blog.hastag)}<br/><br/>
+                        <img src={Avatar} alt="avt-blog-detail" className="avatar-blog-detail"></img><Link to={`/user/${blog.user_id._id}`}><span>{blog.user_id.username}</span></Link> <span> viết ngày {(new Date(blog.created)).toLocaleDateString()}.</span>
                         <br/>
                         <hr/>
                     </div>

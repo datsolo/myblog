@@ -1,0 +1,13 @@
+.avatar-comment{
+    width: 55px;
+    border-radius: 100%;
+}
+
+.user-name-comment{
+    font-size: 1.3em;
+}
+
+.comment{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

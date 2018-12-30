@@ -1,11 +1,11 @@
 import Login from '../pages/login';
 import Register from '../pages/register';
 import React from 'react';
-import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
-import Blog from '../components/blog';
 import HomePage from '../pages/home';
 import Blogdetail from '../pages/blogdetail';
+import Profile from '../pages/profile';
+import Bloghastag from '../pages/bloghastag';
+import SearchResuilt from '../pages/searchresuilt/searchResuilt';
 
 const routes = [
     {
@@ -32,6 +32,21 @@ const routes = [
         path: "/blog/:id",
         exact: false,
         main: () => <Blogdetail></Blogdetail>
+    },
+    {
+        path: "/user/:id",
+        exact: false,
+        main: () => <Profile></Profile>
+    },
+    {
+        path: "/hastag/:id",
+        exact: false,
+        main: () => <Bloghastag></Bloghastag>
+    },
+    {
+        path: '/search/:keyword',
+        exact: false,
+        main: () => <SearchResuilt></SearchResuilt>
     }
 ];
 

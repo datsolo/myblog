@@ -33,6 +33,7 @@ export const loginAccount = (username, password) => (dispatch) => {
 export const logoutAccount = () => (dispatch) => {
     dispatch({ type: LOGOUT_USER });
     removeCookie('session_id');
+   
 }
 
 export const getAuthAccount = () => dispatch => {
