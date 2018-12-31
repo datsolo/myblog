@@ -8,16 +8,31 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getAllBlog, getAllUserBlog } from '../../actions/BlogAction';
 import Hastag from '../../components/hastag';
+import Paginate from '../../components/paginate';
 
 class HomePage extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            page: 1
+        }
+    }
 
     componentDidMount() {
         this.props.getAllBlog();
     }
 
+    onChangePage = (destinationPage) => {
+        this.setState({ 
+                page: destinationPage,
+            
+        }, () => this.props.getAllBlog(this.state.page));
+    }
+
     showBlogs(blogs) {
-        if (blogs.length < 0) {
-            return null;
+        if (blogs.length <= 0) {
+            return <p style={{fontSize: '1.4em'}}>Không có bài viết</p>;
         }
         else return blogs.map((blog) => {
             return <Blog key={blog._id} blog={blog}></Blog>
@@ -52,6 +67,7 @@ class HomePage extends Component {
                         <div className='col-1'></div>
                         <div className='col-7'>
                             {this.showBlogs(this.props.listBlogs)}
+                            <Paginate current={this.props.current_page} pages={this.props.pages} changePage={this.onChangePage}></Paginate>
                         </div>
                         <div className='col-3'>
                             <div className='row'>
@@ -72,6 +88,7 @@ class HomePage extends Component {
                         <div className='col-1'></div>
                     </div>
                 </div>
+                
                 <Footer></Footer>
             </React.Fragment>
         )
@@ -82,13 +99,15 @@ function mapStateToProps(state) {
     return {
         listBlogs: state.blog.blogs,
         user: state.auth.user,
-        hastag: state.hastag.allHastag
+        hastag: state.hastag.allHastag,
+        current_page: state.blog.current,
+        pages: state.blog.pages
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getAllBlog: () => dispatch(getAllBlog()),
+        getAllBlog: (page) => dispatch(getAllBlog(page)),
     }
 }
 

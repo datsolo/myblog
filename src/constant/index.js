@@ -26,3 +26,4 @@ export const WRITE_COMMENT = 'WRITE_COMMENT';
 
 //account
 export const GET_ACCOUNT_DETAIL = 'GET_ACCOUNT_DETAIL';
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';

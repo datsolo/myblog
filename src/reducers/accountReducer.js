@@ -1,5 +1,6 @@
 import {
-    GET_ACCOUNT_DETAIL
+    GET_ACCOUNT_DETAIL,
+    UPDATE_ACCOUNT
 } from '../constant';
 
 const INIT_STATE = {
@@ -15,6 +16,7 @@ export default (state = INIT_STATE, action) => {
         case GET_ACCOUNT_DETAIL: {
             return {...state, account: action.payload};
         }
+        case UPDATE_ACCOUNT: return state;
         default: return state;
     }
 }

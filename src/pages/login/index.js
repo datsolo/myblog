@@ -62,16 +62,16 @@ class LoginPage extends Component {
                         <div className="form-holder">
                             <div className="form-content">
                                 <div className="form-items">
-                                    <h3>Get more things done with Loggin platform.</h3>
-                                    <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                                    <h3>Datsolo Blog</h3>
+                                    <p><span>Đăng nhập để tham gia cộng đồng chia sẻ kiến thức và cuộc sống của lập trình viên</span></p>
                                     <div className="page-links">
-                                        <Link to={"/login"} className="active">Login</Link><Link to={"/register"} >Register</Link>
+                                        <Link to={"/login"} className="active">Đăng nhập</Link><Link to={"/register"} >Đăng ký</Link>
                                     </div>
                                     <form onSubmit={(event) => this.login(event)}>
-                                        <input className="form-control" type="text" name="username" placeholder="User name" required onChange={(event) => this.onChange(event)}/>
-                                        <input className="form-control" type="password" name="password" placeholder="Password" required  onChange={(event) => this.onChange(event)}/>
+                                        <input className="form-control" type="text" name="username" placeholder="Tên đăng nhập" required onChange={(event) => this.onChange(event)}/>
+                                        <input className="form-control" type="password" name="password" placeholder="Mật khẩu" required  onChange={(event) => this.onChange(event)}/>
                                         <div className="form-button">
-                                            <button id="submit" type="submit" className="ibtn">Login</button> <a href="forget7.html">Forget password?</a>
+                                            <button id="submit" type="submit" className="ibtn">Đăng nhập</button> 
                                         </div>
                                     </form>
                                 </div>

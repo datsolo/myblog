@@ -11,8 +11,8 @@ import {
     SEARCH_BLOG
 } from '../constant';
 
-export const getAllBlog = () => (dispatch) => {
-    return api.get('/blogs').then((res) => {
+export const getAllBlog = (page=1) => (dispatch) => {
+    return api.get(`/blogs?page=${page}`).then((res) => {
         return dispatch({ type: GET_ALL_BLOG, payload: res.data.blogs, current: res.data.current, pages: res.data.pages });
     })
         .catch(err => {

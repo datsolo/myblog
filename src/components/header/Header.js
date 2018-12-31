@@ -7,6 +7,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { logoutAccount } from '../../actions/AuthActions';
 import Select from 'react-select';
 import { creatBlog } from '../../actions/BlogAction';
+import { updateAccount } from '../../actions/AccountAction';
 
 class Header extends Component {
 
@@ -15,17 +16,41 @@ class Header extends Component {
         this.state = {
             keyword: "",
             creatBlog: false,
-            hastag: []
+            hastag: [],
+            editProfile: false,
+            user: {},
+            editUser: {}
         }
         this.onSetHastag = this.onSetHastag.bind(this);
         this.change = this.change.bind(this);
         this.createBlog = this.createBlog.bind(this);
     }
 
+    // componentDidMount(){
+    //     this.setState({
+    //         ...this.state,
+    //         user: this.props.user
+    //     }, () => {
+    //         console.log(this.state.user)
+    //     })
+    // }
+
+    componentWillReceiveProps(nextProps){
+        // console.log(nextProps)
+        if(nextProps && nextProps.user){
+            this.setState({
+                ...this.state,
+                user: nextProps.user
+            }, () => {
+                console.log(this.props.user)
+            })
+        }
+    }
+
     showHastag(hastags) {
         if (hastags.length > 0) {
             return hastags.map((hastag) => {
-                return <a className="dropdown-item" href={`/hastag/${hastag._id}`} key={hastag._id}>#{hastag.content}</a>
+                return <a className="dropdown-item" href={`/hastag/${hastag._id}`} key={hastag._id}><span>#{hastag.content}</span></a>
             })
         }
         else return null;
@@ -49,6 +74,9 @@ class Header extends Component {
         window.location.href = `/search/${this.state.keyword}`;
     }
 
+
+
+//create blog
     openCreaterBlog() {
         this.setState({
             ...this.state,
@@ -91,7 +119,52 @@ class Header extends Component {
         this.props.creatBlog(data);
     }
 
+
+
+//edit profile
+    openEditProfile() {
+        this.setState({
+            ...this.state,
+            editProfile: true
+        })
+    }
+
+    closeEditProfile() {
+        this.setState({
+            ...this.state,
+            editProfile: false
+        })
+    }
+
+    editProfile(e) {
+        this.setState({
+            ...this.state,
+            user: {
+                ...this.state.user,
+                [e.target.name]: e.target.value
+            },
+            editUser: {
+                ...this.state.editUser,
+                [e.target.name]: e.target.value
+            }
+            
+        })
+    }
+
+
+    submitEditProfile(e){
+        e.preventDefault();
+        let data = {
+           ...this.state.editUser
+        }
+        console.log(data)
+        this.props.updateAccount(this.props.user._id, data);
+    }
+
+
+
     render() {
+        console.log('aaaaaaaaaaaa')
 
         const user = this.props.user;
         const hastags = this.props.hastags;
@@ -137,9 +210,9 @@ class Header extends Component {
                                         {user.username}
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="dropdown07">
-                                        <a className="dropdown-item" href={`/user/${user._id}`}><i className="zmdi zmdi-account-circle"></i> Trang cá nhân</a>
-                                        <a className="dropdown-item" href="#"><i className="zmdi zmdi-settings"></i> Cài đặt</a>
-                                        <a className="dropdown-item" href="javascript:void(0)" onClick={() => this.logout()}><i className="zmdi zmdi-power"></i> Đăng xuất</a>
+                                        <a className="dropdown-item" href={`/user/${user._id}`}><i className="zmdi zmdi-account-circle"></i><span> Trang cá nhân</span></a>
+                                        <a className="dropdown-item" href="javascript:void(0)" onClick={() => this.openEditProfile()}><i className="zmdi zmdi-settings"></i><span> Cài đặt</span></a>
+                                        <a className="dropdown-item" href="javascript:void(0)" onClick={() => this.logout()}><i className="zmdi zmdi-power"></i><span> Đăng xuất</span></a>
                                     </div>
                                 </li>
 
@@ -171,6 +244,25 @@ class Header extends Component {
                         </form>
                     </ModalBody>
                 </Modal>
+            
+
+            <Modal isOpen={this.state.editProfile} toggle={() => this.closeEditProfile()}>
+                    <ModalHeader>
+                        <span>Chỉnh sửa thông tin cá nhân</span>
+                    </ModalHeader>
+                    <ModalBody>
+                        <form className='form-group' onSubmit={(event) => this.submitEditProfile(event)}>
+                            <label className='title'>Tên đăng nhập</label>
+                            <input type='text' name='username' className='form-control' placeholder="Tên đăng nhập" value={this.state.user.username} onChange={(event) => this.editProfile(event)} required></input>
+                            <label className='title'>Số điện thoại</label>
+                            <input className='form-control' type='number' value={this.state.user.phone}  onChange={(event) => this.editProfile(event)} required></input>
+                            <label className='title'>Mật khẩu mới </label>
+                            <input type='password' name="password" className='form-control'  onChange={(event) => this.editProfile(event)} ></input>
+
+                        <button type='submit' className='btn btn-primary'>Cập nhật</button>
+                        </form>
+                    </ModalBody>
+                </Modal>
             </React.Fragment>
 
         )
@@ -187,7 +279,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         logout: () => dispatch(logoutAccount()),
-        creatBlog: (data) => dispatch(creatBlog(data))
+        creatBlog: (data) => dispatch(creatBlog(data)),
+        updateAccount: (id, data) => dispatch(updateAccount(id, data))
     }
 }
 

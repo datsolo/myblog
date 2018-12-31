@@ -18,8 +18,8 @@ class ProfilePage extends Component {
     }
 
     showBlogs(blogs) {
-        if (blogs.length < 0) {
-            return null;
+        if (blogs.length <= 0) {
+            return <p style={{fontSize: '1.4em'}}>Không có bài viết</p>;
         }
         else return blogs.map((blog) => {
             return <MyBlog key={blog._id} blog={blog}></MyBlog>

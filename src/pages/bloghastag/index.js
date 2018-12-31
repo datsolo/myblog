@@ -18,7 +18,7 @@ class BlogHastag extends Component {
     }
 
     showBlogs(blogs) {
-        if (blogs.length < 0) {
+        if (blogs.length <= 0) {
             return <p style={{fontSize: '1.4em'}}>Không có bài viết</p>;
         }
         else return blogs.map((blog) => {

@@ -55,17 +55,17 @@ class RegisterPage extends Component {
                     <div className="form-holder">
                         <div className="form-content">
                             <div className="form-items">
-                                <h3>Get more things done with Loggin platform.</h3>
-                                <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                                <h3>Datsolo Blog</h3>
+                                <p><span>Đăng ký tài khoản mới để tham gia cùng chúng tôi</span></p>
                                 <div className="page-links">
-                                    <Link to={"/login"}>Login</Link><Link to={"/register"} className="active">Register</Link>
+                                    <Link to={"/login"}>Đăng nhập</Link><Link to={"/register"} className="active">Đăng ký</Link>
                                 </div>
                                 <form onSubmit={(event) => this.onSubmit(event)}>
-                                    <input className="form-control" type="username" name="username" placeholder="User name" required onChange={(event) => this.onChange(event)} />
-                                    <input className="form-control" type="password" name="password" placeholder="Password" required onChange={(event) => this.onChange(event)} />
-                                    <input className="form-control" type="number" name="phone" placeholder="Phone number" required onChange={(event) => this.onChange(event)} />
+                                    <input className="form-control" type="username" name="username" placeholder="Tên đăng nhập" required onChange={(event) => this.onChange(event)} />
+                                    <input className="form-control" type="password" name="password" placeholder="mật khẩu" required onChange={(event) => this.onChange(event)} />
+                                    <input className="form-control" type="number" name="phone" placeholder="số điện thoại" required onChange={(event) => this.onChange(event)} />
                                     <div className="form-button">
-                                        <button id="submit" type="submit" className="ibtn">Register</button>
+                                        <button id="submit" type="submit" className="ibtn">Đăng ký</button>
                                     </div>
                                 </form>
                             </div>
